@@ -7,14 +7,17 @@ import "dotenv/config";
 const app = express();
 const PORT = 3000;
 
-// mongoose connection
-mongoose.Promise = global.Promise;
-mongoose.connect(
-  `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.q9pfz.mongodb.net/?retryWrites=true&w=majority`,
-  {
-    useMongoClient: true,
+const mongodbUrl = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.q9pfz.mongodb.net/?retryWrites=true&w=majority`;
+
+async function loadDb() {
+  try {
+    await mongoose.connect(mongodbUrl);
+  } catch (err) {
+    console.log(err);
   }
-);
+}
+
+loadDb();
 
 // bodyparser setup
 app.use(bodyParser.urlencoded({ extended: true }));
