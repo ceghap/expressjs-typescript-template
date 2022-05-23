@@ -5,13 +5,11 @@ import routes from "./src/routes/crmRoutes";
 import "dotenv/config";
 
 const app = express();
-const PORT = 3000;
-
-const mongodbUrl = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.q9pfz.mongodb.net/?retryWrites=true&w=majority`;
+const PORT: number = 3000;
 
 async function loadDb() {
   try {
-    await mongoose.connect(mongodbUrl);
+    await mongoose.connect(process.env.MONGODB_URI);
   } catch (err) {
     console.log(err);
   }
