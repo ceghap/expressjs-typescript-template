@@ -5,7 +5,8 @@
     "module": "commonjs",
     "allowJs": true,
     "esModuleInterop": true,
-    "target": "es6"
+    "target": "es6",
+    "checkJs": true
   },
   "include": ["./src/**/*.ts", "index.ts"]
 }
